@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<chrono>
 #define MAX 1000000
 
 std::string join_string(std::string total_string, std::string s){
@@ -8,6 +9,7 @@ std::string join_string(std::string total_string, std::string s){
 }
 
 int main(){
+    auto start = std::chrono::high_resolution_clock::now();
     std::string s = "";
     size_t i = 1;
     while(s.length() < MAX){
@@ -26,5 +28,8 @@ int main(){
         i++;
     }
     std::cout << total << "\n";
+    auto end = std::chrono::high_resolution_clock::now();
+    auto delta = std::chrono::duration_cast<std::chrono::microseconds>(end-start).count();
+    std::cout << delta << "\n";
     return EXIT_SUCCESS;
 }
